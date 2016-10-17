@@ -5,3 +5,11 @@ git commit -m "first commit"
 git remote add origin https://github.com/thakuli/rally_team6.git
 git push -u origin master
 
+
+git remote add origin https://github.com/thakuli/rally_team6.git
+git push -u origin master
+
+$ mosquitto_pub -h 54.93.150.126 -t team7_write -m '{"m1" : "1", "m2" : "1", "m_up" : "4", "time" : "24", "command_id" : "255"}'
+
+$ mosquitto_sub -h 54.93.150.126 -t team7_read
+
