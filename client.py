@@ -1,4 +1,6 @@
 import json
+import threading
+from time import sleep
 
 import paho.mqtt.client as mqtt
 
@@ -17,15 +19,16 @@ def on_connect(client, userdata, flags, rc):
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-    print(msg.topic+" "+str(msg.payload))
+    #print(msg.topic+" "+str(msg.payload))
+    pass
 
 def on_subscribe(mosq, obj, mid, granted_qos):
     print("Subscribed OK")
 
 
 def send_command(m1, m2, m_up, time, command_id):
-    message = "{'m1': '%s', 'm2': '%s', 'm_up': '%s', 'time': '%s', 'command_id': '%s'}" % m1, m2, m_up, time, command_id
-    #client.publish('team7_write', message, qos=0, retain=False)
+    message = "{'m1': '%s', 'm2': '%s', 'm_up': '%s', 'time': '%s', 'command_id': '%s'}" % (m1, m2, m_up, time, command_id)
+    client.publish('team7_write', message, qos=0, retain=False)
     print message
 
 
@@ -44,6 +47,10 @@ if __name__ == "__main__":
     client.subscribe("team7_read", 0)
     client.subscribe("team7_write", 0)
 
+    thread = threading.Thread(target = client.loop_forever)
+    thread.deamon = True
+    thread.start()
+
 
 
 
@@ -51,25 +58,27 @@ if __name__ == "__main__":
     # handles reconnecting.
     # Other loop*() functions are available that give a threaded interface and a
     # manual interface.
-    client.loop_forever()
+
 
     while True:
-        input_var = raw_input()
+        sleep(1)
+        input_var = raw_input('command: ')
+        print input_var
 
-    if input_var == "w":
-        send_command("1", "1", "0", "100", "0")
+        if input_var == "w":
+            send_command("1", "1", "0", "100", "0")
 
-    elif input_var == "s":
-        send_command("2", "2", "0", "100", "0")
+        elif input_var == "s":
+            send_command("2", "2", "0", "100", "0")
 
-    elif input_var == "a":
-        send_command("1", "0", "1", "100", "0")
+        elif input_var == "a":
+            send_command("1", "0", "1", "100", "0")
 
-    elif input_var == "d":
-        send_command("0", "1", "1", "100", "0")
+        elif input_var == "d":
+            send_command("0", "1", "1", "100", "0")
 
-    elif input_var == "q":
-        send_command("0", "0", "1", "100", "0")
+        elif input_var == "q":
+            send_command("0", "0", "1", "100", "0")
 
 
 
