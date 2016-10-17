@@ -4,23 +4,23 @@ from time import sleep
 
 import paho.mqtt.client as mqtt
 
-
-
 # The callback for when the client receives a CONNACK response from the server.
 import sys
 
 
 def on_connect(client, userdata, flags, rc):
-    print("Connected with result code "+str(rc))
+    print("Connected with result code " + str(rc))
 
     # Subscribing in on_connect() means that if we lose the connection and
     # reconnect then subscriptions will be renewed.
     client.subscribe("$SYS/#")
 
+
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-    print(msg.topic+" "+str(msg.payload))
+    print(msg.topic + " " + str(msg.payload))
     pass
+
 
 def on_subscribe(mosq, obj, mid, granted_qos):
     print("Subscribed OK")
@@ -34,6 +34,8 @@ def send_command(m1, m2, m_up, time, command_id):
 
 if __name__ == "__main__":
 
+    broker = "54.93.150.126"
+    port = 1883
     client = mqtt.Client(protocol=mqtt.MQTTv31)
     client.on_connect = on_connect
     client.on_message = on_message
@@ -41,27 +43,22 @@ if __name__ == "__main__":
 
     client.tls_insecure_set(True)
 
-    client.connect("54.93.150.126", 1883, 60)
-
+    client.connect(broker, port, 60)
 
     client.subscribe("team7_read", 0)
     client.subscribe("team7_write", 0)
 
-    thread = threading.Thread(target = client.loop_forever)
+    thread = threading.Thread(target=client.loop_forever)
     thread.deamon = True
     thread.start()
-
-
-
 
     # Blocking call that processes network traffic, dispatches callbacks and
     # handles reconnecting.
     # Other loop*() functions are available that give a threaded interface and a
     # manual interface.
 
-
     while True:
-        #wsleep(1)
+        # wsleep(1)
         input_var = raw_input('command: ')
         print input_var
 
@@ -79,12 +76,3 @@ if __name__ == "__main__":
 
         elif input_var == "q":
             send_command(0, 0, 3, 150, 0)
-
-
-
-
-
-
-
-
-
