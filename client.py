@@ -14,17 +14,29 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
 
-client = mqtt.Client()
+
+def on_subscribe(mosq, obj, mid, granted_qos):
+    print("Subscribed OK")
+
+
+
+
+client = mqtt.Client(protocol=mqtt.MQTTv31)
 client.on_connect = on_connect
 client.on_message = on_message
+client.on_subscribe = on_subscribe
 
 client.tls_insecure_set(True)
+
 
 client.connect("54.93.150.126", 1883, 60)
 
 
-client.subscribe("team7_read")
-client.subscribe("team7_write")
+client.subscribe("team7_read", 0)
+client.subscribe("team7_write", 0)
+
+
+
 
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.
