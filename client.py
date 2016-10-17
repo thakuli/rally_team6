@@ -66,19 +66,19 @@ if __name__ == "__main__":
         print input_var
 
         if input_var == "w":
-            send_command(2, 1, 0, 150, 0)
+            send_command(2, 1, 3, 150, 0)
 
         elif input_var == "s":
-            send_command(1, 2, 0, 150, 0)
+            send_command(1, 2, 3, 150, 0)
 
         elif input_var == "a":
-            send_command(2, 2, 1, 150, 0)
+            send_command(2, 2, 3, 50, 0)
 
         elif input_var == "d":
-            send_command(1, 1, 1, 150, 0)
+            send_command(1, 1, 3, 50, 0)
 
         elif input_var == "q":
-            send_command(0, 0, 1, 150, 0)
+            send_command(0, 0, 3, 150, 0)
 
 
 
