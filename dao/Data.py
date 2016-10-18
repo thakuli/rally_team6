@@ -1,4 +1,20 @@
 import math
+import threading
+
+# class DataHandler:
+#     def __init__(self):
+#         self.data = []
+#         func.__lock__ = threading.Lock()
+
+#     def set_data(self, data):
+#         with func.__lock__:
+#             self.data.append(data)
+
+#     def get_data(self):
+#         with func.__lock__:
+#             self.data.append(data)
+        
+        
 
 class Beacon:
     def __init__(self, baddr, rssi):
@@ -26,6 +42,15 @@ class Compass:
         arcci=math.degrees(math.asin(tmp))
 
         return arcci
+
+    def get_angle2(self):
+         #return math.atan2(float(self.y),float(self.x))*180/math.pi
+         #return math.atan2(float(self.z),float(self.x))*180/math.pi
+         tmp =  math.atan2(float(self.x),float(self.y))*180/math.pi
+         if (tmp < 0):
+             tmp = tmp + math.pi
+        
+         return tmp
 
 def testi():
     cp = Compass(220, 203, 82)
