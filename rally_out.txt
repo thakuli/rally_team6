@@ -188,7 +188,7 @@
 {"baddr" : "74:CE:03:19:9E:68", "rssi" : "-71", "time_to_go" : "0", "command_id" : "0", "x" : "60", "y" : "248", "z" : "-48"}
 {"baddr" : "11:76:7F:30:8B:C7", "rssi" : "-72", "time_to_go" : "0", "command_id" : "0", "x" : "44", "y" : "156", "z" : "-80"}
 {"baddr" : "10:32:8E:85:AA:6C", "rssi" : "-89", "time_to_go" : "0", "command_id" : "0", "x" : "1", "y" : "245", "z" : "-71"}
-{"baddr" : "11:76:7F:30:8B:C7", "rssi" : "-69", "time_to_go" : "0", "command_id" : "0", "x" : "23", "y" : "225", "z" : "-97"}
+{"baddr" : "11:76:7F:30:8B:C7" , "rssi" : "-69", "time_to_go" : "0", "command_id" : "0", "x" : "23", "y" : "225", "z" : "-97"}
 {"baddr" : "C6:1A:FD:49:BD:F3", "rssi" : "-62", "time_to_go" : "0", "command_id" : "0", "x" : "23", "y" : "225", "z" : "-97"}
 {"baddr" : "74:CE:03:19:9E:68", "rssi" : "-68", "time_to_go" : "0", "command_id" : "0", "x" : "64", "y" : "223", "z" : "-100"}
 {"baddr" : "10:32:8E:85:AA:6C", "rssi" : "-84", "time_to_go" : "0", "command_id" : "0", "x" : "100", "y" : "147", "z" : "-99"}
