@@ -1,9 +1,10 @@
 import paho.mqtt.client as mqtt
 from Queue import PriorityQueue
 from ReadInfo import *
+from avarage import Avarage
 
 MAX_DATA = 8
-allowed_baddrs = ["6D:1E:FE:94:E6:44", "54:DE:10:BF:7A:80", "7D:B5:04:19:9E:68" ]
+allowed_baddrs = ["57:D7:D5:72:8D:F1" ]
 beacons = {}
 
 for bc in allowed_baddrs:
@@ -43,8 +44,11 @@ def on_message(client, userdata, msg):
         jsonD = read_json(msg.payload)
         if (jsonD['baddr'] in allowed_baddrs):
             ri = ReadInfo(read_json(msg.payload))
+            avarage1.add(int(ri.rssi))
+            print avarage1.get_avararage()
             print "x={}, y={}, z={}".format(ri.compass.x, ri.compass.y, ri.compass.z)
             print "angle={}".format(ri.compass.get_angle2())
+
 
 def on_subscribe(mosq, obj, mid, granted_qos):
     print("Subscribed OK")
@@ -62,7 +66,7 @@ client.connect("54.93.150.126", 1883, 60)
 client.subscribe("team7_read", 0)
 # client.subscribe("team7_write", 0)
 
-
+avarage1 = Avarage()
 
 
 # Blocking call that processes network traffic, dispatches callbacks and
