@@ -1,7 +1,7 @@
 
 MAX_ITEMS=5
 
-class Average():
+class Average:
     def __init__(self):
         self.nums = []
 
