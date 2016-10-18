@@ -1,6 +1,7 @@
 import paho.mqtt.client as mqtt
-from ReadInfo import ReadInfo
+from ReadInfo import *
 
+allowed_baddrs = ["6D:1E:FE:94:E6:44", "54:DE:10:BF:7A:80", "7D:B5:04:19:9E:68" ]
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
@@ -14,8 +15,10 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     #print(msg.topic+" oho "+str(msg.payload))
     if (msg.topic == "team7_read"):
-        ri = ReadInfo(read_json(msg.payload))
-        ri.to_string()
+        jsonD = read_json(msg.payload)
+        if (jsonD['baddr'] in allowed_baddrs):
+             ri = ReadInfo(jsonD)
+             ri.to_string()
     
 
 
