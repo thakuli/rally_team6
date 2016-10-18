@@ -13,3 +13,19 @@ $ mosquitto_pub -h 54.93.150.126 -t team7_write -m '{"m1" : "1", "m2" : "1", "m_
 
 $ mosquitto_sub -h 54.93.150.126 -t team7_read
 
+
+pseudo:
+ota ensimmäinen kohdepiste
+Lue n kappaletta sanomia:
+	- laske oma sijainti
+		- sorttaa voimakkuuden perusteella
+		- käytä kolme voimakkainta mittausta
+	- ollaanko kohdpisteessä?
+		jos, niin ota seuraava
+		jollei ole, niin ollaan maalissa
+	- laske suunta kohdepisteeseen
+		- laske kompassisuunta
+	- käännä vehjettä
+	- kaasua
+
+
