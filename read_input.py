@@ -1,7 +1,7 @@
 import paho.mqtt.client as mqtt
 from Queue import PriorityQueue
 from ReadInfo import *
-from avarage import Avarage
+from avarage import Average
 
 MAX_DATA = 8
 allowed_baddrs = ["57:D7:D5:72:8D:F1" ]
@@ -45,7 +45,7 @@ def on_message(client, userdata, msg):
         if (jsonD['baddr'] in allowed_baddrs):
             ri = ReadInfo(read_json(msg.payload))
             avarage1.add(int(ri.rssi))
-            print avarage1.get_avararage()
+            print avarage1.average()
             print "x={}, y={}, z={}".format(ri.compass.x, ri.compass.y, ri.compass.z)
             print "angle={}".format(ri.compass.get_angle2())
 
@@ -66,7 +66,7 @@ client.connect("54.93.150.126", 1883, 60)
 client.subscribe("team7_read", 0)
 # client.subscribe("team7_write", 0)
 
-avarage1 = Avarage()
+avarage1 = Average()
 
 
 # Blocking call that processes network traffic, dispatches callbacks and
