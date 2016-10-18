@@ -16,17 +16,10 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     # print(msg.topic+" oho "+str(msg.payload))
     if (msg.topic == "team7_read"):
-<<<<<<< HEAD
         jsonD = read_json(msg.payload)
         if (jsonD['baddr'] in allowed_baddrs):
-             ri = ReadInfo(jsonD)
-             ri.to_string()
-    
-=======
-        ri = ReadInfo(read_json(msg.payload))
-        ri.to_string()
->>>>>>> b7ac9d5fe1906c68a84fb4ab63985723968400c3
-
+            ri = ReadInfo(read_json(msg.payload))
+            ri.to_string()
 
 def on_subscribe(mosq, obj, mid, granted_qos):
     print("Subscribed OK")
