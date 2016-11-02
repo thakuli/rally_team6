@@ -4,6 +4,7 @@ from dao.Data import Coordinate
 from dao.Data import Compass
 
 
+
 class ReadInfo:
     def __init__(self, json):
         self.set_data(json)
